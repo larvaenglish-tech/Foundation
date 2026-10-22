@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Link bài giảng – Nhân sự</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&display=swap">
+<style>
+:root{--ink:#1f3b5c;--soft:#5d7590;--line:#dbe8f5;--bg:#f2f8ff;--card:#fff;--ok:#2f9e5b;--font:"Baloo 2","Arial Rounded MT Bold",Arial,sans-serif;color-scheme:light}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg)}
+.wrap{max-width:860px;margin:0 auto;padding:20px 16px 40px}
+h1{margin:0;font-size:clamp(26px,5vw,36px);line-height:1.1}
+.sub{margin:6px 0 16px;color:var(--soft);font-weight:600;font-size:16px}
+.how{background:#fff;border:2px solid var(--line);border-radius:18px;padding:12px 16px;font-size:15px;font-weight:600;line-height:1.5}
+.how b{color:var(--ink)}
+.tpl{margin-top:14px;background:#fff;border:2px solid var(--line);border-radius:18px;padding:12px 16px}
+.tpl label{font-weight:800;font-size:15px;display:block;margin-bottom:6px}
+.tpl input{width:100%;font:600 15px var(--font);color:var(--ink);border:2px solid var(--line);border-radius:12px;padding:8px 12px}
+.list{display:grid;gap:12px;margin-top:16px}
+.row{background:var(--card);border-radius:18px;border:2px solid var(--line);border-left:8px solid var(--c);padding:12px 14px;display:grid;gap:10px}
+.grp{display:grid;gap:6px;background:#fafcff;border-radius:14px;padding:8px 10px}
+.gl{font-weight:800;font-size:15px}
+.no{font-size:14px;font-weight:800;color:var(--c)}
+.tt{font-size:21px;font-weight:800;line-height:1.15}
+.url{font:600 13px ui-monospace,Menlo,monospace;color:var(--soft);word-break:break-all;background:#f6f9fd;border-radius:10px;padding:6px 10px}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+button,a.open{font:800 15px var(--font);border:0;border-radius:14px;padding:10px 14px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.b1{background:var(--c);color:#fff}
+.b2{background:#ffd84d;color:var(--ink)}
+a.open{background:#eef4fb;color:var(--ink)}
+button.done{background:var(--ok)!important;color:#fff!important}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:var(--ink);color:#fff;font-weight:800;padding:10px 18px;border-radius:20px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+@media (max-width:620px){.btns>*{flex:1;justify-content:center}}
+</style></head><body><div class="wrap">
+<h1>📚 Link bài giảng Foundation</h1>
+<div class="sub">Trang dành cho nhân sự Larva English · gửi bài cho phụ huynh qua Zalo</div>
+<div class="how">
+<b>Cách dùng:</b> tìm đúng buổi → bấm <b>Copy tin nhắn</b> (có sẵn lời chào + link + hướng dẫn xem) hoặc <b>Copy link</b> (chỉ link) → mở Zalo → dán vào ô chat (giữ ngón tay → <b>Dán</b>, hoặc ⌘/Ctrl + V) → gửi.<br>
+Mỗi buổi có 2 phần: <b>📖 Bài giảng</b> và <b>🎤 My talk</b> (bài luyện thuyết trình). Bấm <b>Mở thử</b> để xem trước khi gửi.
+</div>
+<div class="tpl"><label for="cls">Tên lớp (không bắt buộc – sẽ được thêm vào tin nhắn)</label>
+<input id="cls" placeholder="Ví dụ: lớp Foundation F1 – thứ 3, 5"></div>
+<div class="list" id="list"></div>
+</div>
+<div class="toast" id="toast">Đã copy ✓</div>
+<script>
+const L=[{"n": 1, "t": "Hello! How are you?", "c": "#2b8fd6", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-01.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-01.html"}, {"n": 2, "t": "Stand up! Sit down!", "c": "#e9785a", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-02.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-02.html"}, {"n": 3, "t": "What color is it?", "c": "#7a5bd6", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-03.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-03.html"}, {"n": 4, "t": "What's your favorite color?", "c": "#d9578f", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-04.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-04.html"}, {"n": 5, "t": "How many?", "c": "#3e9a55", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-05.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-05.html"}, {"n": 6, "t": "Let's share!", "c": "#d08a1c", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-06.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-06.html"}, {"n": 7, "t": "Do you like ice cream?", "c": "#e57a2e", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-07.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-07.html"}, {"n": 8, "t": "Can you swim?", "c": "#1f9bb8", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-08.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-08.html"}, {"n": 9, "t": "A to Z!", "c": "#5b56c9", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-09.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-09.html"}, {"n": 10, "t": "Spell it!", "c": "#2f8a5a", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-10.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-10.html"}, {"n": 11, "t": "Let's play!", "c": "#8a5bd6", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-11.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-11.html"}, {"n": 12, "t": "Ready for the test!", "c": "#c9971c", "u": "https://larvaenglish-tech.github.io/Foundation/lesson-12.html", "m": "https://larvaenglish-tech.github.io/Foundation/mytalk-12.html"}];
+const $=s=>document.querySelector(s);
+function msg(r,t){const c=$("#cls").value.trim(),u=t?r.m:r.u;
+return "Kính gửi Quý phụ huynh"+(c?" "+c:"")+",\nTrung tâm Larva English gửi "+(t?"bài luyện thuyết trình My talk – ":"bài giảng ")+"Buổi "+r.n+" – "+r.t+" để con "+(t?"luyện nói tại nhà":"ôn tập tại nhà")+":\n👉 "+u+"\nCách xem: bấm vào link → bấm nút vàng \"Xem ngang ⟳\" rồi nghiêng điện thoại sang ngang để xem to hơn → chạm ▶ để bật tiếng → bấm Next ▶ để học từng bước.\nTrân trọng!";}
+async function copy(text,btn){
+  let ok=false;
+  try{await navigator.clipboard.writeText(text);ok=true;}catch(e){}
+  if(!ok){const t=document.createElement("textarea");t.value=text;t.style.position="fixed";t.style.opacity="0";document.body.appendChild(t);t.select();try{ok=document.execCommand("copy")}catch(e){}t.remove();}
+  const old=btn.textContent;btn.textContent=ok?"✓ Đã copy":"Không copy được";btn.classList.add("done");
+  const tt=$("#toast");tt.textContent=ok?"Đã copy – mở Zalo và dán vào ô chat":"Hãy giữ ngón tay lên link để copy";tt.classList.add("on");
+  setTimeout(()=>{btn.textContent=old;btn.classList.remove("done");tt.classList.remove("on")},1800);
+}
+$("#list").innerHTML=L.map((r,i)=>`<div class="row" style="--c:${r.c}">
+<div><div class="no">BUỔI ${r.n}</div><div class="tt">${r.t}</div></div>
+<div class="grp"><div class="gl">📖 Bài giảng</div><div class="btns"><button class="b2" data-i="${i}" data-k="m">💬 Copy tin nhắn</button><button class="b1" data-i="${i}" data-k="u">🔗 Copy link</button><a class="open" href="${r.u}" target="_blank" rel="noopener">👀 Mở thử</a></div><div class="url">${r.u}</div></div>
+<div class="grp"><div class="gl">🎤 My talk (luyện thuyết trình)</div><div class="btns"><button class="b2" data-i="${i}" data-k="tm">💬 Copy tin nhắn</button><button class="b1" data-i="${i}" data-k="tu">🔗 Copy link</button><a class="open" href="${r.m}" target="_blank" rel="noopener">👀 Mở thử</a></div><div class="url">${r.m}</div></div></div>`).join("");
+$("#list").addEventListener("click",e=>{const b=e.target.closest("button");if(!b)return;const r=L[+b.dataset.i];const k=b.dataset.k;copy(k==="m"?msg(r,0):k==="tm"?msg(r,1):k==="tu"?r.m:r.u,b);});
+</script></body></html>
