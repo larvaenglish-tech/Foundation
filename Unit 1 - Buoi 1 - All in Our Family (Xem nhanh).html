@@ -403,7 +403,7 @@ img{-webkit-user-drag:none}
 #qvParts button{flex:none;height:38px;padding:0 14px;border-radius:19px;background:#fff;border:3px solid var(--line);font-size:18px;font-weight:800;color:var(--ink);white-space:nowrap}
 #qvParts button.on{background:var(--accent);border-color:var(--accent);color:#fff}
 #qvX{width:48px;height:48px;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(31,59,92,.18);font-size:24px;flex:none}
-#qvList{flex:1;overflow-y:auto;padding:4px 20px 20px;scroll-behavior:smooth}
+#qvList{position:relative;flex:1;overflow-y:auto;padding:4px 20px 20px;scroll-behavior:smooth}
 #qvList::-webkit-scrollbar{width:14px}#qvList::-webkit-scrollbar-thumb{background:#b9d7ef;border-radius:8px;border:3px solid #f6fbff}
 .qvG{margin-top:10px}
 .qvG h4{margin:0 0 8px;font-size:22px;font-weight:800;color:var(--accent);display:flex;align-items:center;gap:10px}
@@ -424,7 +424,7 @@ img{-webkit-user-drag:none}
 #qvOpen{position:absolute;right:46px;bottom:40px;z-index:8;height:58px;padding:0 24px;border-radius:30px;background:#fff;border:4px solid var(--accent);color:var(--accent);font-size:26px;font-weight:800;box-shadow:0 5px 0 rgba(31,59,92,.15)}
 #qvOpen:hover{background:var(--accent);color:#fff}
 /* numbered slide buttons instead of dots: tap a number to go to that slide */
-#dots{overflow-x:auto;overflow-y:hidden;justify-content:flex-start;gap:4px;padding:6px 8px;scrollbar-width:none;scroll-behavior:smooth;height:44px;box-sizing:border-box;background:rgba(255,255,255,.35);border-radius:22px;margin:0 4px}
+#dots{position:relative;overflow-x:auto;overflow-y:hidden;justify-content:flex-start;gap:4px;padding:6px 8px;scrollbar-width:none;scroll-behavior:smooth;height:44px;box-sizing:border-box;background:rgba(255,255,255,.35);border-radius:22px;margin:0 4px}
 #dots::-webkit-scrollbar{display:none}
 #dots b{width:auto;min-width:30px;height:30px;border-radius:15px;padding:0 4px;box-sizing:border-box;background:rgba(255,255,255,.75);color:var(--ink);font-size:17px;font-weight:800;line-height:30px;text-align:center;font-style:normal}
 #dots b.game{border-radius:15px;transform:none;background:#ffd2b0;color:#b4561a}
@@ -433,6 +433,63 @@ img{-webkit-user-drag:none}
 #dots b.cur{background:var(--gold);color:var(--ink);box-shadow:0 0 0 3px #fff;transform:scale(1.12)}
 #dots b:hover{background:var(--accent);color:#fff}
 #dots i{width:2px;height:24px;background:rgba(255,255,255,.8);border-radius:1px;margin:0 4px;flex:none}
+
+/* ---------- phone layout (body.mob): .mp = portrait, .ml = landscape, .mrot = turned sideways by the ⟳ button ---------- */
+#mob{display:none}
+body.mob{background:linear-gradient(180deg,#bfe4ff,#eef8ff 60%,#d9f0cf)}
+body.mob #mob{display:block}
+body.mob #rot,body.mob #pbar,body.mob #rotBack,body.mob #notes{display:none!important}
+body.mob #vp{position:fixed;overflow:hidden;box-shadow:0 8px 24px rgba(30,80,130,.18)}
+body.mrot{position:fixed;left:0;top:0;transform-origin:0 0;transform:rotate(90deg) translateY(-100%)}
+#mob .mb{width:44px;height:44px;border-radius:50%;background:#fff;box-shadow:0 3px 0 rgba(31,59,92,.18);font-size:20px;flex:none;display:flex;align-items:center;justify-content:center;font-family:var(--font);color:var(--ink)}
+#mob .mb:active,#mGo:active{transform:translateY(2px)}
+#mob .mb.on{background:var(--gold)}
+#mTop{position:fixed;left:0;right:0;top:0;z-index:50;display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top) + 8px) 10px 4px}
+#mTi{flex:1;min-width:0;display:flex;flex-direction:column;line-height:1.1}
+#mNo{font-size:15px;color:var(--accent)}
+#mTt{font-size:19px;font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mNums{position:fixed;left:0;right:0;z-index:50;padding:4px 8px}
+body.mob #dots{margin:0;height:50px;padding:7px 8px;border-radius:25px;background:rgba(255,255,255,.55);gap:6px;display:flex;align-items:center}
+body.mob #dots b{min-width:36px;height:36px;border-radius:18px;font-size:18px;line-height:36px}
+body.mob #dots b.cur{transform:scale(1.08)}
+body.mob #dots i{height:28px}
+#mInfo{position:fixed;left:10px;right:10px;z-index:40;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:2px 2px 8px}
+#mTag{background:#fff;border-radius:20px;padding:12px 16px;box-shadow:0 4px 0 rgba(31,59,92,.08)}
+#mTag span{display:inline-block;background:var(--accent);color:#fff;border-radius:14px;padding:0 12px;font-size:15px;font-weight:800;line-height:28px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mTag b{display:block;font-size:24px;line-height:1.15;margin-top:6px}
+#mStep{display:flex;align-items:center;gap:10px;margin-top:10px;font-size:16px;font-weight:800;color:#5a6f86}
+#mStepB{flex:1;display:flex;gap:4px}#mStepB i{flex:1;height:8px;border-radius:4px;background:#dcecf9}#mStepB i.on{background:var(--gold)}
+#mNoteB{align-self:flex-start;height:40px;padding:0 16px;border-radius:20px;background:#fffbe6;border:3px solid #ffd84d;font-size:16px;font-weight:800;font-family:var(--font);color:var(--ink)}
+#mNote{background:#fffbe6;border:3px solid #ffd84d;border-radius:16px;padding:10px 14px;font-size:16px;line-height:1.35;font-family:Arial,sans-serif;font-weight:600}
+#mNext{display:flex;align-items:center;gap:12px;background:#fff;border-radius:18px;padding:8px;box-shadow:0 4px 0 rgba(31,59,92,.08);text-align:left;font-family:var(--font);color:var(--ink)}
+#mNext .pic{width:96px;height:64px;border-radius:12px;background:#e6f6ff;display:flex;align-items:center;justify-content:center;overflow:hidden;flex:none;font-size:34px}
+#mNext .pic img{max-width:100%;max-height:100%}
+#mNext small{display:block;font-size:14px;font-weight:800;color:#5a6f86}#mNext b{font-size:18px;line-height:1.15}
+#mCtl{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;gap:8px;align-items:center;padding:8px 10px calc(env(safe-area-inset-bottom) + 10px)}
+#mCtl .mb{width:54px;height:54px;font-size:22px}
+#mGo{flex:1;height:56px;border-radius:28px;background:var(--gold);box-shadow:0 4px 0 var(--gold-deep);font-family:var(--font);font-size:24px;font-weight:800;color:var(--ink);white-space:nowrap}
+#mGo.ready{animation:ready 1.3s ease-in-out infinite}
+/* landscape: numbers in a column on the left, buttons in a column on the right */
+body.ml #mInfo,body.ml #mTi{display:none}
+body.ml #mNums{right:auto;top:0;bottom:0;width:58px;padding:6px 4px 6px calc(env(safe-area-inset-left) + 4px)}
+body.ml #dots{flex-direction:column;height:100%;width:50px;padding:6px 0;border-radius:25px;overflow-x:hidden;overflow-y:auto;box-sizing:border-box}
+body.ml #dots b{min-width:38px;height:32px;line-height:32px;font-size:16px}
+body.ml #dots i{width:28px;height:2px;margin:3px 0}
+body.ml #mTop,body.ml #mCtl{left:auto;right:0;width:56px;flex-direction:column;gap:6px;padding:8px calc(env(safe-area-inset-right) + 6px) 8px 6px}
+body.ml #mTop{top:0}body.ml #mCtl{top:auto;bottom:0}
+body.ml #mob .mb{width:42px;height:42px;font-size:18px}
+body.ml #mGo{flex:none;width:48px;height:48px;border-radius:50%;font-size:22px;padding:0}
+body.ml:not(.mrot):not(.mlock) #mRot{display:none}
+@media (max-height:340px){body.ml #mob .mb{width:36px;height:36px;font-size:16px}body.ml #mGo{width:42px;height:42px}}
+/* quick view full screen on a phone */
+body.mob #qv{position:fixed;z-index:100}
+body.mob #qvBox{width:100%;height:100%;border:0;border-radius:0}
+body.mob #qvTop{flex-wrap:wrap;padding:calc(env(safe-area-inset-top) + 10px) calc(env(safe-area-inset-right) + 12px) 6px calc(env(safe-area-inset-left) + 12px)}
+body.mob #qvTop h3{flex:1;font-size:24px}body.mob #qvTop h3 small{font-size:16px}
+body.mob #qvParts{order:3;flex-basis:100%}
+body.mob #qvList{padding:4px calc(env(safe-area-inset-right) + 12px) calc(env(safe-area-inset-bottom) + 16px) calc(env(safe-area-inset-left) + 12px)}
+body.mob .qvRow{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}
+body.mob .qvPic{height:92px}body.mob .qvT{font-size:16px;min-height:37px}body.mob .qvG h4{font-size:18px}
 
 </style>
 </head>
@@ -1431,7 +1488,7 @@ if (new URLSearchParams(location.search).has("mute")) { muted = true; $("#bMute"
   function open() { cards.forEach((c, i) => { c.classList.toggle("cur", i === si); c.classList.toggle("done", i < si); }); qv.classList.add("on");
     list.style.scrollBehavior = "auto"; const c = cards[Math.max(si, 0)]; list.scrollTop = si > 0 ? c.parentNode.parentNode.offsetTop - 4 : 0; list.style.scrollBehavior = ""; list.dispatchEvent(new Event("scroll")); c.focus({ preventScroll: true }); }
   function close() { qv.classList.remove("on"); }
-  window.quickView = open;
+  window.quickView = open; window.__qvPic = pic;
   qv.querySelector("#qvX").onclick = close; qv.onclick = e => { if (e.target === qv) close(); };
   /* a button in the top bar, so the overview opens from any slide */
   const b = el("button", "rb", "🗂"); b.id = "bQuick"; b.setAttribute("aria-label", "Xem nhanh cả bài (G)"); b.title = "Xem nhanh cả bài (G)"; b.onclick = open; $("#bNotes").before(b);
@@ -1448,8 +1505,67 @@ if (new URLSearchParams(location.search).has("mute")) { muted = true; $("#bMute"
 })();
 /* numbered slide buttons: each dot shows its slide number; the strip scrolls (mouse wheel too) and keeps the current number in view */
 (() => { const box = $("#dots"); dots.forEach((d, i) => d.textContent = i + 1);
-  box.addEventListener("wheel", e => { if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); box.scrollLeft += e.deltaY; } }, { passive: false });
-  const _go = go; go = i => { _go(i); const d = dots[si]; if (d) box.scrollTo({ left: d.offsetLeft - box.clientWidth / 2 + d.offsetWidth / 2 }); };
+  box.addEventListener("wheel", e => { if (box.scrollHeight > box.clientHeight + 1) return; if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) { e.preventDefault(); box.scrollLeft += e.deltaY; } }, { passive: false });
+  const center = () => { const d = dots[si]; if (!d) return; if (box.scrollHeight > box.clientHeight + 1) box.scrollTo({ top: d.offsetTop - box.clientHeight / 2 + d.offsetHeight / 2 }); else box.scrollTo({ left: d.offsetLeft - box.clientWidth / 2 + d.offsetWidth / 2 }); };
+  window.__centerDot = center; const _go = go; go = i => { _go(i); center(); };
+})();
+
+/* ---------- phone layout: portrait = slide across the top + big touch buttons; landscape = slide fills the height, numbers left, buttons right ---------- */
+(() => {
+  const bd = document.body, vp = $("#vp"), stg = $("#stage"), bar = $("#bar"), box = $("#dots"), qv = $("#qv"), CROP = 66;
+  const m = el("div"); m.id = "mob";
+  m.innerHTML = `<div id="mTop"><button id="mQv" class="mb" aria-label="Xem nhanh cả bài">🗂</button><div id="mTi"><b id="mNo"></b><span id="mTt"></span></div><button id="mMute" class="mb" aria-label="Tắt / bật tiếng">🔊</button><button id="mRot" class="mb" aria-label="Xem ngang">⟳</button></div>
+    <div id="mNums"></div>
+    <div id="mInfo"><div id="mTag"><span></span><b></b><div id="mStep"><span id="mStepT"></span><div id="mStepB"></div></div></div><button id="mNoteB">📝 Ghi chú cho giáo viên ▾</button><div id="mNote" hidden></div><button id="mNext"></button></div>
+    <div id="mCtl"><button id="mPrev" class="mb" aria-label="Slide trước">◀</button><button id="mRep" class="mb" aria-label="Phát lại bước này">↺</button><button id="mPause" class="mb" aria-label="Tạm dừng">⏸</button><button id="mGo">Next ▶</button></div>`;
+  bd.appendChild(m);
+  const q = id => m.querySelector("#" + id);
+  let rot = false, locked = false;
+  function lay() {
+    let W = innerWidth, H = innerHeight; if (rot && W > H) rot = false;
+    const por = !rot && H > W && W <= 900, touch = matchMedia("(pointer:coarse)").matches, land = rot || (W > H && (H <= 430 || (touch && H <= 600))), on = por || land;
+    bd.classList.toggle("mob", on); bd.classList.toggle("mp", por); bd.classList.toggle("ml", land); bd.classList.toggle("mrot", rot); bd.classList.toggle("mlock", locked);
+    if (rot) { [W, H] = [H, W]; bd.style.width = W + "px"; bd.style.height = H + "px"; } else bd.style.width = bd.style.height = "";
+    if (!on) { if (box.parentNode !== bar) bar.insertBefore(box, $("#bMusic")); if (qv.parentNode !== stg) stg.appendChild(qv); vp.style.cssText = ""; fit(); __centerDot(); return; }
+    if (box.parentNode !== q("mNums")) q("mNums").appendChild(box); if (qv.parentNode !== bd) bd.appendChild(qv);
+    let L, T, AW_, AH_;
+    if (por) { q("mNums").style.top = q("mTop").offsetHeight + "px"; T = q("mNums").offsetTop + q("mNums").offsetHeight + 6; L = 0; AW_ = W; AH_ = H; }
+    else { q("mNums").style.top = ""; L = q("mNums").offsetLeft + q("mNums").offsetWidth + 4; const R = Math.min(q("mTop").offsetLeft, q("mCtl").offsetLeft) - 4; AW_ = R - L; AH_ = H; T = 0; }
+    const s = por ? AW_ / 1280 : Math.min(AW_ / 1280, AH_ / (720 - CROP)), w = Math.round(1280 * s), h = Math.round((720 - CROP) * s);
+    if (land) { L += (AW_ - w) / 2; T += (AH_ - h) / 2; }
+    vp.style.cssText = `inset:auto;left:${L}px;top:${T}px;width:${w}px;height:${h}px;border-radius:${por ? 0 : 14}px`;
+    stg.style.transform = `translate(-50%,-50%) translateY(${-CROP / 2 * s}px) scale(${s})`;
+    if (por) { const it = q("mInfo"); it.style.top = T + h + 12 + "px"; it.style.bottom = q("mCtl").offsetHeight + "px"; }
+    upd(); __centerDot();
+  }
+  function upd() { if (!bd.classList.contains("mob")) return; const s = S[si] || {}, n = steps.length;
+    q("mNo").textContent = `Slide ${si + 1}/${S.length}`; q("mTt").textContent = s.title || "";
+    q("mTag").querySelector("span").textContent = s.tag || ""; q("mTag").querySelector("b").textContent = s.title || "";
+    q("mStepT").textContent = n ? `Bước ${Math.min(k, n)}/${n}` : ""; q("mStepB").innerHTML = Array.from({ length: n }, (_, j) => `<i class="${j < k ? "on" : ""}"></i>`).join("");
+    q("mNote").textContent = s.note || ""; q("mNoteB").hidden = !s.note;
+    const nx = S[si + 1], pk = nx && __qvPic(nx); q("mNext").hidden = !nx;
+    if (nx) q("mNext").innerHTML = `<span class="pic">${pk ? `<img alt="" src="${IMG[pk]}">` : "▶"}</span><span><small>Tiếp theo · Slide ${si + 2}</small><b>${nx.title || ""}</b></span>`;
+    const more = k < n; q("mGo").textContent = bd.classList.contains("ml") ? (more ? "▶" : "⏭") : (more ? "Next ▶" : "Slide sau ⏭"); q("mGo").classList.toggle("ready", !running);
+    q("mPause").textContent = paused ? "▶" : "⏸"; q("mPause").classList.toggle("on", paused); q("mMute").textContent = muted ? "🔇" : "🔊";
+    q("mRot").textContent = rot || locked ? "↩" : "⟳"; }
+  const _u = updNext; updNext = () => { _u(); upd(); };
+  const _sp = setPause; setPause = on => { _sp(on); upd(); };
+  const _g = go; go = i => { _g(i); upd(); };
+  q("mQv").onclick = () => quickView(); q("mPrev").onclick = () => $("#bPrev").click(); q("mRep").onclick = () => $("#bReplay").click();
+  q("mPause").onclick = () => $("#bPause").click(); q("mGo").onclick = () => $("#bNext").click(); q("mMute").onclick = () => { $("#bMute").click(); upd(); };
+  q("mNext").onclick = () => go(si + 1);
+  q("mNoteB").onclick = () => { const h = q("mNote").hidden = !q("mNote").hidden; q("mNoteB").textContent = `📝 Ghi chú cho giáo viên ${h ? "▾" : "▴"}`; };
+  /* ⟳: real landscape where the phone allows it (full screen + orientation lock), otherwise turn the page sideways */
+  q("mRot").onclick = async () => {
+    if (rot) { rot = false; lay(); return; }
+    if (locked) { locked = false; try { screen.orientation.unlock(); } catch (e) {} try { await document.exitFullscreen(); } catch (e) {} lay(); return; }
+    try { await document.documentElement.requestFullscreen(); await screen.orientation.lock("landscape"); locked = true; }
+    catch (e) { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); rot = true; }
+    lay(); };
+  document.addEventListener("fullscreenchange", () => { if (!document.fullscreenElement && locked) { locked = false; lay(); } });
+  const later = () => { lay(); setTimeout(lay, 150); setTimeout(lay, 500); };
+  addEventListener("resize", later); addEventListener("orientationchange", later); if (window.visualViewport) visualViewport.addEventListener("resize", later);
+  lay();
 })();
 
 
